@@ -75,6 +75,7 @@ const projects = [
     repoUrl: 'https://github.com/Manan1121/SuPRCodeReview',
     repoLabel: 'Private repo',
     isPrivate: true,
+    liveUrl: 'https://su-pr-code-review-web.vercel.app',
     image:
       'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
   },
@@ -87,6 +88,7 @@ const projects = [
     repoUrl: 'https://github.com/Manan1121/leetcode-tracker',
     repoLabel: 'GitHub repo',
     isPrivate: false,
+    liveUrl: 'https://leetcodetracker.me',
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
   },
@@ -99,10 +101,22 @@ const projects = [
     repoUrl: 'https://github.com/Manan1121/ruhealth2024-team7',
     repoLabel: 'GitHub repo',
     isPrivate: false,
+    liveUrl: null,
     image:
       'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
   },
 ]
+
+const GitHubMark = ({ className = 'h-4 w-4' }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    className={className}
+  >
+    <path d="M12 .5C5.649.5.5 5.649.5 12A11.5 11.5 0 0 0 8.36 22.07c.575.106.785-.25.785-.556 0-.274-.01-1-.015-1.962-3.182.692-3.854-1.533-3.854-1.533-.52-1.321-1.27-1.673-1.27-1.673-1.039-.71.08-.696.08-.696 1.148.08 1.752 1.178 1.752 1.178 1.02 1.748 2.676 1.243 3.328.95.103-.739.399-1.244.725-1.53-2.54-.29-5.212-1.27-5.212-5.654 0-1.249.446-2.27 1.177-3.07-.118-.289-.51-1.456.112-3.036 0 0 .96-.307 3.145 1.172A10.955 10.955 0 0 1 12 6.036c.973.005 1.954.132 2.87.389 2.184-1.479 3.143-1.172 3.143-1.172.624 1.58.232 2.747.114 3.036.733.8 1.176 1.821 1.176 3.07 0 4.395-2.676 5.36-5.224 5.645.41.353.776 1.05.776 2.117 0 1.528-.014 2.76-.014 3.136 0 .31.207.668.79.555A11.502 11.502 0 0 0 23.5 12C23.5 5.649 18.351.5 12 .5Z" />
+  </svg>
+)
 
 const experience = [
   {
@@ -411,10 +425,21 @@ function App() {
                 {projects[activeProject].isPrivate ? (
                   <Lock className="h-3.5 w-3.5" />
                 ) : (
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  <GitHubMark className="h-3.5 w-3.5" />
                 )}
                 {projects[activeProject].repoLabel}
               </a>
+              {projects[activeProject].liveUrl && (
+                <a
+                  href={projects[activeProject].liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="pointer-events-auto mt-2 inline-flex w-fit items-center gap-2 text-xs font-mono-code uppercase tracking-[0.18em] text-white/45 transition-colors hover:text-white"
+                >
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  Live site
+                </a>
+              )}
             </div>
           </>
         )}
@@ -734,13 +759,23 @@ function App() {
                     {project.isPrivate ? (
                       <Lock className="h-3.5 w-3.5" />
                     ) : (
-                      <ArrowUpRight className="h-3.5 w-3.5" />
+                      <GitHubMark className="h-3.5 w-3.5" />
                     )}
-                    {project.repoLabel}
+                    Source
                   </a>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-all duration-300 group-hover:bg-white group-hover:text-black">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </div>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      onMouseEnter={handleHover}
+                      onMouseLeave={handleLeave}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-all duration-300 hover:bg-white hover:text-black"
+                      aria-label={`${project.title} live site`}
+                    >
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
