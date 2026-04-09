@@ -446,9 +446,6 @@ function App() {
                 heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
             >
-              <div className="pointer-events-none absolute inset-y-[8%] left-[16%] right-[10%] rounded-full bg-[radial-gradient(circle,rgba(78,100,136,0.16),rgba(20,28,42,0.08)_42%,transparent_72%)] blur-3xl" />
-              <div className="pointer-events-none absolute inset-x-[28%] bottom-[8%] h-32 bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_72%)] blur-3xl" />
-
               <div className="relative isolate h-[460px] overflow-hidden sm:h-[560px] lg:h-[720px] xl:h-[760px]">
                 <img
                   src="/manan-portrait-rembg-cropped.png"
