@@ -599,31 +599,31 @@ function App() {
             </div>
 
             <div
-              className={`relative mx-auto w-full max-w-[560px] transition-all delay-200 duration-1000 lg:mx-0 ${
+              className={`relative mx-auto w-full max-w-[500px] transition-all delay-200 duration-1000 lg:mx-0 lg:translate-x-6 ${
                 heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
             >
-              <div className="pointer-events-none absolute inset-x-[8%] top-[6%] h-[72%] rounded-full bg-[radial-gradient(circle,rgba(67,96,151,0.3),rgba(18,23,38,0.1)_42%,transparent_74%)] blur-3xl" />
-              <div className="pointer-events-none absolute inset-x-[18%] bottom-[8%] h-32 bg-[radial-gradient(circle,rgba(255,255,255,0.11),transparent_72%)] blur-2xl" />
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-14 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.42)] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[var(--bg-color)] to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.72)] to-transparent" />
+              <div className="pointer-events-none absolute inset-x-[6%] top-[10%] h-[64%] rounded-full bg-[radial-gradient(circle,rgba(72,106,168,0.34),rgba(22,30,46,0.16)_40%,transparent_76%)] blur-3xl" />
+              <div className="pointer-events-none absolute inset-x-[24%] bottom-[8%] h-28 bg-[radial-gradient(circle,rgba(255,255,255,0.12),transparent_70%)] blur-2xl" />
+              <div className="pointer-events-none absolute -left-8 top-[4%] h-[82%] w-32 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.85)] to-transparent blur-xl" />
+              <div className="pointer-events-none absolute -right-8 top-[8%] h-[76%] w-24 bg-gradient-to-l from-[var(--bg-color)] via-[rgba(3,3,3,0.7)] to-transparent blur-lg" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.78)] to-transparent" />
 
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0))] shadow-[0_40px_120px_rgba(0,0,0,0.45)]">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_16%,rgba(255,255,255,0.1),transparent_34%)]" />
+              <div className="relative overflow-hidden">
+                <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_52%_16%,rgba(255,255,255,0.12),transparent_32%)]" />
                 <img
                   src="/manan-portrait.png"
                   alt="Portrait of Manan Shah"
-                  className="relative z-10 h-full min-h-[520px] w-full object-cover object-center brightness-[1.08] contrast-[1.06] saturate-[0.92] lg:min-h-[620px]"
+                  className="relative z-10 h-full min-h-[520px] w-full scale-[1.18] object-cover object-[center_18%] brightness-[1.1] contrast-[1.08] saturate-[0.9] mix-blend-lighten lg:min-h-[660px] lg:scale-[1.24] lg:object-[center_12%]"
                   style={{
                     maskImage:
-                      'linear-gradient(to bottom, rgba(0,0,0,0.78) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 78%, rgba(0,0,0,0.18) 96%, rgba(0,0,0,0) 100%)',
+                      'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 34%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.52) 74%, rgba(0,0,0,0) 92%), linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 72%, rgba(0,0,0,0.26) 92%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
-                      'linear-gradient(to bottom, rgba(0,0,0,0.78) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 78%, rgba(0,0,0,0.18) 96%, rgba(0,0,0,0) 100%)',
+                      'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 34%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.52) 74%, rgba(0,0,0,0) 92%), linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 72%, rgba(0,0,0,0.26) 92%, rgba(0,0,0,0) 100%)',
                   }}
                 />
-                <div className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(90deg,rgba(3,3,3,0.38)_0%,rgba(3,3,3,0.02)_22%,rgba(3,3,3,0)_64%,rgba(3,3,3,0.14)_100%)]" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-[linear-gradient(180deg,transparent,rgba(3,3,3,0.16)_40%,rgba(3,3,3,0.84)_100%)]" />
+                <div className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(90deg,rgba(3,3,3,0.92)_0%,rgba(3,3,3,0.2)_18%,rgba(3,3,3,0)_42%,rgba(3,3,3,0.06)_72%,rgba(3,3,3,0.4)_100%)]" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-[linear-gradient(180deg,transparent,rgba(3,3,3,0.12)_38%,rgba(3,3,3,0.92)_100%)]" />
               </div>
             </div>
           </div>
