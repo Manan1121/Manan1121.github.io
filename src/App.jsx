@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, Braces, Database, LayoutGrid } from 'lucide-react'
+import { ArrowUpRight, Braces, Database, LayoutGrid, Lock } from 'lucide-react'
 
 const useScrollReveal = ({ threshold = 0.1 } = {}) => {
   const ref = useRef(null)
@@ -72,6 +72,9 @@ const projects = [
     desc: 'Built a full-stack engineering training platform with 76+ typed API routes and 49 rubric-based challenges backed by automated scorecards.',
     shortDesc: 'A full-stack training platform for engineering code reviews and debugging workflows.',
     year: '2026',
+    repoUrl: 'https://github.com/Manan1121/SuPRCodeReview',
+    repoLabel: 'Private repo',
+    isPrivate: true,
     image:
       'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
   },
@@ -81,6 +84,9 @@ const projects = [
     desc: 'Built an algorithm-driven coding platform with OAuth, real-time analytics, and SM-2 scheduling to optimize retention and submission review cadence.',
     shortDesc: 'An adaptive coding platform that uses spaced repetition to improve long-term retention.',
     year: '2025',
+    repoUrl: 'https://github.com/Manan1121/leetcode-tracker',
+    repoLabel: 'GitHub repo',
+    isPrivate: false,
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
   },
@@ -90,6 +96,9 @@ const projects = [
     desc: 'Placed Top 3 at HackHealth. Built a medical billing pipeline that reached 85% classification accuracy and handled 50+ concurrent requests under 100ms.',
     shortDesc: 'A scalable medical billing classification pipeline built on AWS document and ML services.',
     year: '2025',
+    repoUrl: 'https://github.com/Manan1121/ruhealth2024-team7',
+    repoLabel: 'GitHub repo',
+    isPrivate: false,
     image:
       'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
   },
@@ -393,6 +402,19 @@ function App() {
               <p className="text-sm leading-relaxed font-light text-white/50">
                 {projects[activeProject].shortDesc}
               </p>
+              <a
+                href={projects[activeProject].repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="pointer-events-auto mt-3 inline-flex w-fit items-center gap-2 text-xs font-mono-code uppercase tracking-[0.18em] text-white/70 transition-colors hover:text-white"
+              >
+                {projects[activeProject].isPrivate ? (
+                  <Lock className="h-3.5 w-3.5" />
+                ) : (
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                )}
+                {projects[activeProject].repoLabel}
+              </a>
             </div>
           </>
         )}
@@ -700,6 +722,22 @@ function App() {
 
                 <div className="mt-6 flex items-center gap-6 md:mt-0">
                   <span className="text-xs text-white/30 font-mono-code">{project.year}</span>
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    onMouseEnter={handleHover}
+                    onMouseLeave={handleLeave}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-[11px] font-mono-code uppercase tracking-[0.18em] text-white/70 transition-colors hover:border-white/40 hover:text-white"
+                    aria-label={`${project.title} repository`}
+                  >
+                    {project.isPrivate ? (
+                      <Lock className="h-3.5 w-3.5" />
+                    ) : (
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    )}
+                    {project.repoLabel}
+                  </a>
                   <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-all duration-300 group-hover:bg-white group-hover:text-black">
                     <ArrowUpRight className="h-4 w-4" />
                   </div>
