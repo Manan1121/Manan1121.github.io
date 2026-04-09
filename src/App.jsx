@@ -582,16 +582,16 @@ function App() {
               <div className="pointer-events-none absolute inset-x-[14%] bottom-[6%] h-20 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.66)] to-transparent blur-lg" />
               <HeroWireframeSphere mousePosition={mousePosition} />
 
-              <div className="relative z-10 mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-full lg:max-w-[390px]">
+              <div className="relative z-10 mx-auto aspect-square w-full max-w-[372px] overflow-hidden rounded-full lg:max-w-[404px]">
                 <img
                   src="/manan-portrait.png"
                   alt="Portrait of Manan Shah"
-                  className="relative z-10 h-full w-full scale-[1.18] object-cover object-[center_8%] brightness-[1.12] contrast-[1.12] saturate-[0.88] mix-blend-screen lg:scale-[1.22] lg:object-[center_2%]"
+                  className="relative z-10 h-full w-full scale-[1.34] object-cover object-[center_26%] brightness-[1.12] contrast-[1.12] saturate-[0.88] mix-blend-screen lg:scale-[1.42] lg:object-[center_22%]"
                   style={{
                     maskImage:
-                      'radial-gradient(circle at 50% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.62) 72%, rgba(0,0,0,0.18) 86%, rgba(0,0,0,0) 100%)',
+                      'radial-gradient(circle at 50% 46%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.96) 62%, rgba(0,0,0,0.62) 75%, rgba(0,0,0,0.18) 88%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
-                      'radial-gradient(circle at 50% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.62) 72%, rgba(0,0,0,0.18) 86%, rgba(0,0,0,0) 100%)',
+                      'radial-gradient(circle at 50% 46%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.96) 62%, rgba(0,0,0,0.62) 75%, rgba(0,0,0,0.18) 88%, rgba(0,0,0,0) 100%)',
                   }}
                 />
                 <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_48%_40%,transparent_0%,transparent_56%,rgba(3,3,3,0.12)_74%,rgba(3,3,3,0.54)_100%)]" />
