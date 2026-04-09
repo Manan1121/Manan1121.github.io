@@ -603,26 +603,25 @@ function App() {
                 heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
             >
-              <div className="pointer-events-none absolute inset-x-[2%] top-[0%] h-[58%] rounded-full bg-[radial-gradient(circle,rgba(72,106,168,0.28),rgba(22,30,46,0.14)_42%,transparent_78%)] blur-3xl" />
-              <div className="pointer-events-none absolute inset-x-[22%] bottom-[8%] h-24 bg-[radial-gradient(circle,rgba(255,255,255,0.1),transparent_70%)] blur-2xl" />
-              <div className="pointer-events-none absolute -left-10 top-[2%] h-[78%] w-28 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.92)] to-transparent blur-xl" />
-              <div className="pointer-events-none absolute -right-8 top-[4%] h-[68%] w-16 bg-gradient-to-l from-[var(--bg-color)] via-[rgba(3,3,3,0.48)] to-transparent blur-md" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-22 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.72)] to-transparent" />
+              <div className="pointer-events-none absolute inset-x-[8%] top-[4%] h-[54%] rounded-full bg-[radial-gradient(circle,rgba(72,106,168,0.28),rgba(22,30,46,0.14)_42%,transparent_78%)] blur-3xl" />
+              <div className="pointer-events-none absolute inset-x-[26%] bottom-[14%] h-20 bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_70%)] blur-2xl" />
+              <div className="pointer-events-none absolute -left-6 top-[10%] h-[58%] w-20 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.86)] to-transparent blur-lg" />
+              <div className="pointer-events-none absolute -right-6 top-[12%] h-[54%] w-14 bg-gradient-to-l from-[var(--bg-color)] via-[rgba(3,3,3,0.42)] to-transparent blur-md" />
+              <div className="pointer-events-none absolute inset-x-[14%] bottom-[6%] h-20 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.66)] to-transparent blur-lg" />
 
-              <div className="relative overflow-hidden">
+              <div className="relative mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-full lg:max-w-[390px]">
                 <img
                   src="/manan-portrait.png"
                   alt="Portrait of Manan Shah"
-                  className="relative z-10 h-full min-h-[450px] w-full scale-[1.06] object-cover object-[center_6%] brightness-[1.12] contrast-[1.12] saturate-[0.88] mix-blend-screen lg:min-h-[560px] lg:scale-[1.08] lg:object-[center_0%]"
+                  className="relative z-10 h-full w-full scale-[1.18] object-cover object-[center_8%] brightness-[1.12] contrast-[1.12] saturate-[0.88] mix-blend-screen lg:scale-[1.22] lg:object-[center_2%]"
                   style={{
                     maskImage:
-                      'radial-gradient(circle at 52% 34%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.96) 48%, rgba(0,0,0,0.68) 62%, rgba(0,0,0,0.2) 78%, rgba(0,0,0,0) 92%), linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 68%, rgba(0,0,0,0.32) 88%, rgba(0,0,0,0) 100%)',
+                      'radial-gradient(circle at 50% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.92) 62%, rgba(0,0,0,0.34) 82%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
-                      'radial-gradient(circle at 52% 34%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.96) 48%, rgba(0,0,0,0.68) 62%, rgba(0,0,0,0.2) 78%, rgba(0,0,0,0) 92%), linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 68%, rgba(0,0,0,0.32) 88%, rgba(0,0,0,0) 100%)',
+                      'radial-gradient(circle at 50% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.92) 62%, rgba(0,0,0,0.34) 82%, rgba(0,0,0,0) 100%)',
                   }}
                 />
-                <div className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(90deg,rgba(3,3,3,0.96)_0%,rgba(3,3,3,0.24)_16%,rgba(3,3,3,0)_38%,rgba(3,3,3,0)_70%,rgba(3,3,3,0.22)_100%)]" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-24 bg-[linear-gradient(180deg,transparent,rgba(3,3,3,0.1)_38%,rgba(3,3,3,0.9)_100%)]" />
+                <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_46%_38%,transparent_0%,transparent_54%,rgba(3,3,3,0.18)_72%,rgba(3,3,3,0.7)_100%)]" />
               </div>
             </div>
           </div>
