@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Braces, Database, LayoutGrid, Lock } from 'lucide-react'
+import MeshGradientBackground from './MeshGradientBackground.jsx'
 
 const useScrollReveal = ({ threshold = 0.1 } = {}) => {
   const ref = useRef(null)
@@ -153,11 +154,11 @@ const experience = [
 
 const BackgroundGrid = () => (
   <div
-    className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-20"
+    className="pointer-events-none fixed inset-0 z-[1] h-full w-full opacity-14"
     style={{
       backgroundImage: `
-        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px)
       `,
       backgroundSize: '40px 40px',
     }}
@@ -225,6 +226,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-[var(--bg-color)] text-[var(--text-color)] selection:bg-white selection:text-black">
+      <MeshGradientBackground mousePosition={mousePosition} />
       <BackgroundGrid />
 
       <div className="hidden lg:block">

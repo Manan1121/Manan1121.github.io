@@ -22,10 +22,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 28%),
-    radial-gradient(circle at right center, rgba(255, 255, 255, 0.04), transparent 24%),
-    var(--bg-color);
+  background: var(--bg-color);
   color: var(--text-color);
   cursor: none;
   overflow-x: hidden;
