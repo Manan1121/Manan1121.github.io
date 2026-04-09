@@ -610,7 +610,6 @@ function App() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-22 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.72)] to-transparent" />
 
               <div className="relative overflow-hidden">
-                <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_52%_14%,rgba(255,255,255,0.09),transparent_30%)]" />
                 <img
                   src="/manan-portrait.png"
                   alt="Portrait of Manan Shah"
