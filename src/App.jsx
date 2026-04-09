@@ -164,161 +164,56 @@ const BackgroundGrid = () => (
   />
 )
 
-const WireframeSphere = ({ mousePosition }) => {
-  const canvasRef = useRef(null)
-  const mouseRef = useRef(mousePosition)
-
-  useEffect(() => {
-    mouseRef.current = mousePosition
-  }, [mousePosition])
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const context = canvas?.getContext('2d')
-
-    if (!canvas || !context) {
-      return undefined
-    }
-
-    let animationFrameId
-    let width = 0
-    let height = 0
-
-    const setSize = () => {
-      width = window.innerWidth
-      height = window.innerHeight
-      const dpr = window.devicePixelRatio || 1
-
-      canvas.width = width * dpr
-      canvas.height = height * dpr
-      canvas.style.width = `${width}px`
-      canvas.style.height = `${height}px`
-      context.setTransform(dpr, 0, 0, dpr, 0, 0)
-    }
-
-    setSize()
-    window.addEventListener('resize', setSize)
-
-    let rotationX = 0
-    let rotationY = 0
-
-    const draw = () => {
-      context.clearRect(0, 0, width, height)
-
-      const currentMouse = mouseRef.current
-      const scrollY = window.scrollY || 0
-      const scrollFade = Math.max(0, 1 - scrollY / (height * 0.8))
-
-      if (scrollFade <= 0) {
-        animationFrameId = window.requestAnimationFrame(draw)
-        return
-      }
-
-      const mouseNormX = currentMouse.x === 0 ? 0 : (currentMouse.x / width) * 2 - 1
-      const mouseNormY = currentMouse.y === 0 ? 0 : (currentMouse.y / height) * 2 - 1
-
-      rotationX += 0.0015 + mouseNormY * 0.008
-      rotationY += 0.002 + mouseNormX * 0.008
-
-      const radius = width > 768 ? width * 0.19 : width * 0.4
-      const centerX = width > 768 ? width * 0.87 : width * 0.5
-      const centerY = width > 768 ? height * 0.38 - scrollY * 0.32 : height * 0.5 - scrollY * 0.4
-
-      context.save()
-      context.translate(centerX, centerY)
-      context.strokeStyle = `rgba(255, 255, 255, ${0.15 * scrollFade})`
-      context.lineWidth = 1
-      context.fillStyle = `rgba(255, 255, 255, ${0.5 * scrollFade})`
-
-      const numLats = 16
-      const numLons = 32
-
-      const rotatePoint = (x, y, z) => {
-        const y1 = y * Math.cos(rotationX) - z * Math.sin(rotationX)
-        const z1 = y * Math.sin(rotationX) + z * Math.cos(rotationX)
-        const x2 = x * Math.cos(rotationY) + z1 * Math.sin(rotationY)
-        const z2 = -x * Math.sin(rotationY) + z1 * Math.cos(rotationY)
-
-        return { x: x2, y: y1, z: z2 }
-      }
-
-      const points = []
-
-      for (let i = 0; i <= numLats; i += 1) {
-        const latAngle = Math.PI * (i / numLats) - Math.PI / 2
-        const y = Math.sin(latAngle) * radius
-        const ringRadius = Math.cos(latAngle) * radius
-        const ring = []
-
-        for (let j = 0; j <= numLons; j += 1) {
-          const lonAngle = 2 * Math.PI * (j / numLons)
-          const x = Math.cos(lonAngle) * ringRadius
-          const z = Math.sin(lonAngle) * ringRadius
-          ring.push(rotatePoint(x, y, z))
-        }
-
-        points.push(ring)
-      }
-
-      for (let i = 0; i <= numLats; i += 1) {
-        context.beginPath()
-
-        for (let j = 0; j <= numLons; j += 1) {
-          const point = points[i][j]
-          const scale = 1000 / (1000 - point.z)
-          const px = point.x * scale
-          const py = point.y * scale
-
-          if (j === 0) {
-            context.moveTo(px, py)
-          } else {
-            context.lineTo(px, py)
-          }
-        }
-
-        context.stroke()
-      }
-
-      for (let j = 0; j <= numLons; j += 1) {
-        context.beginPath()
-
-        for (let i = 0; i <= numLats; i += 1) {
-          const point = points[i][j]
-          const scale = 1000 / (1000 - point.z)
-          const px = point.x * scale
-          const py = point.y * scale
-
-          if (i === 0) {
-            context.moveTo(px, py)
-          } else {
-            context.lineTo(px, py)
-          }
-
-          if (i % 2 === 0 && j % 2 === 0) {
-            context.fillRect(px - 1, py - 1, 2, 2)
-          }
-        }
-
-        context.stroke()
-      }
-
-      context.restore()
-      animationFrameId = window.requestAnimationFrame(draw)
-    }
-
-    draw()
-
-    return () => {
-      window.removeEventListener('resize', setSize)
-      window.cancelAnimationFrame(animationFrameId)
-    }
-  }, [])
+const HeroOrbitFrame = ({ mousePosition }) => {
+  const offsetX = mousePosition.x === 0 ? 0 : (mousePosition.x / window.innerWidth - 0.5) * 18
+  const offsetY = mousePosition.y === 0 ? 0 : (mousePosition.y / window.innerHeight - 0.5) * 18
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-70"
-    />
+    <div
+      className="pointer-events-none absolute inset-[-14%] z-0 hidden lg:block"
+      style={{ transform: `translate3d(${offsetX}px, ${offsetY}px, 0)` }}
+    >
+      <div className="absolute inset-[8%] rounded-full border border-white/[0.08]" />
+      <div className="absolute inset-[2%] rounded-full border border-white/[0.05]" />
+      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="40"
+          ry="47"
+          className="hero-orbit-spin origin-center"
+          fill="none"
+          stroke="rgba(255,255,255,0.18)"
+          strokeWidth="0.35"
+        />
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="47"
+          ry="31"
+          className="hero-orbit-reverse origin-center"
+          fill="none"
+          stroke="rgba(255,255,255,0.16)"
+          strokeWidth="0.35"
+        />
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="33"
+          ry="45"
+          transform="rotate(42 50 50)"
+          className="hero-orbit-spin-slow origin-center"
+          fill="none"
+          stroke="rgba(255,255,255,0.12)"
+          strokeWidth="0.28"
+        />
+        <circle cx="18" cy="49" r="0.9" fill="rgba(255,255,255,0.68)" className="hero-node-float" />
+        <circle cx="81" cy="36" r="0.85" fill="rgba(255,255,255,0.62)" className="hero-node-float-delayed" />
+        <circle cx="66" cy="88" r="0.8" fill="rgba(255,255,255,0.58)" className="hero-node-float" />
+      </svg>
+      <div className="absolute inset-[11%] rounded-full bg-[radial-gradient(circle,transparent_58%,rgba(255,255,255,0.06)_72%,transparent_79%)]" />
+      <div className="absolute inset-[1%] rounded-full bg-[radial-gradient(circle,rgba(65,95,145,0.16)_0%,transparent_66%)] blur-2xl" />
+    </div>
   )
 }
 
@@ -383,7 +278,6 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-[var(--bg-color)] text-[var(--text-color)] selection:bg-white selection:text-black">
-      <WireframeSphere mousePosition={mousePosition} />
       <BackgroundGrid />
 
       <div className="hidden lg:block">
@@ -608,20 +502,22 @@ function App() {
               <div className="pointer-events-none absolute -left-6 top-[10%] h-[58%] w-20 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.86)] to-transparent blur-lg" />
               <div className="pointer-events-none absolute -right-6 top-[12%] h-[54%] w-14 bg-gradient-to-l from-[var(--bg-color)] via-[rgba(3,3,3,0.42)] to-transparent blur-md" />
               <div className="pointer-events-none absolute inset-x-[14%] bottom-[6%] h-20 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.66)] to-transparent blur-lg" />
+              <HeroOrbitFrame mousePosition={mousePosition} />
 
-              <div className="relative mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-full lg:max-w-[390px]">
+              <div className="relative z-10 mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-full lg:max-w-[390px]">
                 <img
                   src="/manan-portrait.png"
                   alt="Portrait of Manan Shah"
                   className="relative z-10 h-full w-full scale-[1.18] object-cover object-[center_8%] brightness-[1.12] contrast-[1.12] saturate-[0.88] mix-blend-screen lg:scale-[1.22] lg:object-[center_2%]"
                   style={{
                     maskImage:
-                      'radial-gradient(circle at 50% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.92) 62%, rgba(0,0,0,0.34) 82%, rgba(0,0,0,0) 100%)',
+                      'radial-gradient(circle at 50% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.62) 72%, rgba(0,0,0,0.18) 86%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
-                      'radial-gradient(circle at 50% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.92) 62%, rgba(0,0,0,0.34) 82%, rgba(0,0,0,0) 100%)',
+                      'radial-gradient(circle at 50% 42%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.62) 72%, rgba(0,0,0,0.18) 86%, rgba(0,0,0,0) 100%)',
                   }}
                 />
-                <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_46%_38%,transparent_0%,transparent_54%,rgba(3,3,3,0.18)_72%,rgba(3,3,3,0.7)_100%)]" />
+                <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_48%_40%,transparent_0%,transparent_56%,rgba(3,3,3,0.12)_74%,rgba(3,3,3,0.54)_100%)]" />
+                <div className="pointer-events-none absolute inset-0 z-20 rounded-full ring-1 ring-white/[0.06] ring-offset-0" />
               </div>
             </div>
           </div>
