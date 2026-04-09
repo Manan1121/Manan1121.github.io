@@ -170,49 +170,94 @@ const HeroOrbitFrame = ({ mousePosition }) => {
 
   return (
     <div
-      className="pointer-events-none absolute inset-[-14%] z-0 hidden lg:block"
+      className="pointer-events-none absolute inset-[-24%] z-0 hidden lg:block"
       style={{ transform: `translate3d(${offsetX}px, ${offsetY}px, 0)` }}
     >
-      <div className="absolute inset-[8%] rounded-full border border-white/[0.08]" />
-      <div className="absolute inset-[2%] rounded-full border border-white/[0.05]" />
+      <div className="absolute inset-[10%] rounded-full border border-white/[0.06]" />
+      <div className="absolute inset-[3%] rounded-full border border-white/[0.04]" />
       <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
+        <g className="hero-orbit-spin origin-center">
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="39"
+            ry="47"
+            fill="none"
+            stroke="rgba(255,255,255,0.18)"
+            strokeWidth="0.35"
+          />
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="31"
+            ry="47"
+            fill="none"
+            stroke="rgba(255,255,255,0.08)"
+            strokeWidth="0.28"
+          />
+        </g>
+        <g className="hero-orbit-reverse origin-center">
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="47"
+            ry="30"
+            fill="none"
+            stroke="rgba(255,255,255,0.16)"
+            strokeWidth="0.35"
+          />
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="47"
+            ry="18"
+            fill="none"
+            stroke="rgba(255,255,255,0.08)"
+            strokeWidth="0.28"
+          />
+        </g>
+        <g className="hero-orbit-spin-slow origin-center">
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="34"
+            ry="44"
+            transform="rotate(38 50 50)"
+            fill="none"
+            stroke="rgba(255,255,255,0.13)"
+            strokeWidth="0.28"
+          />
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="45"
+            ry="25"
+            transform="rotate(-26 50 50)"
+            fill="none"
+            stroke="rgba(255,255,255,0.1)"
+            strokeWidth="0.24"
+          />
+        </g>
         <ellipse
           cx="50"
           cy="50"
-          rx="40"
-          ry="47"
-          className="hero-orbit-spin origin-center"
+          rx="27"
+          ry="27"
           fill="none"
-          stroke="rgba(255,255,255,0.18)"
-          strokeWidth="0.35"
+          stroke="rgba(255,255,255,0.06)"
+          strokeWidth="0.2"
         />
-        <ellipse
-          cx="50"
-          cy="50"
-          rx="47"
-          ry="31"
-          className="hero-orbit-reverse origin-center"
-          fill="none"
-          stroke="rgba(255,255,255,0.16)"
-          strokeWidth="0.35"
-        />
-        <ellipse
-          cx="50"
-          cy="50"
-          rx="33"
-          ry="45"
-          transform="rotate(42 50 50)"
-          className="hero-orbit-spin-slow origin-center"
-          fill="none"
-          stroke="rgba(255,255,255,0.12)"
-          strokeWidth="0.28"
-        />
-        <circle cx="18" cy="49" r="0.9" fill="rgba(255,255,255,0.68)" className="hero-node-float" />
-        <circle cx="81" cy="36" r="0.85" fill="rgba(255,255,255,0.62)" className="hero-node-float-delayed" />
-        <circle cx="66" cy="88" r="0.8" fill="rgba(255,255,255,0.58)" className="hero-node-float" />
+        <circle cx="11" cy="50" r="0.9" fill="rgba(255,255,255,0.58)" className="hero-node-float" />
+        <circle cx="89" cy="50" r="0.9" fill="rgba(255,255,255,0.58)" className="hero-node-float-delayed" />
+        <circle cx="50" cy="7" r="0.85" fill="rgba(255,255,255,0.54)" className="hero-node-float" />
+        <circle cx="50" cy="93" r="0.85" fill="rgba(255,255,255,0.54)" className="hero-node-float-delayed" />
+        <circle cx="24" cy="21" r="0.72" fill="rgba(255,255,255,0.46)" className="hero-node-float" />
+        <circle cx="76" cy="21" r="0.72" fill="rgba(255,255,255,0.46)" className="hero-node-float-delayed" />
+        <circle cx="24" cy="79" r="0.72" fill="rgba(255,255,255,0.46)" className="hero-node-float-delayed" />
+        <circle cx="76" cy="79" r="0.72" fill="rgba(255,255,255,0.46)" className="hero-node-float" />
       </svg>
-      <div className="absolute inset-[11%] rounded-full bg-[radial-gradient(circle,transparent_58%,rgba(255,255,255,0.06)_72%,transparent_79%)]" />
-      <div className="absolute inset-[1%] rounded-full bg-[radial-gradient(circle,rgba(65,95,145,0.16)_0%,transparent_66%)] blur-2xl" />
+      <div className="absolute inset-[12%] rounded-full bg-[radial-gradient(circle,transparent_52%,rgba(255,255,255,0.05)_68%,transparent_77%)]" />
+      <div className="absolute inset-[0%] rounded-full bg-[radial-gradient(circle,rgba(65,95,145,0.14)_0%,transparent_67%)] blur-2xl" />
     </div>
   )
 }
