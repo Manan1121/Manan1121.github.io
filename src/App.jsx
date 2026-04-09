@@ -599,11 +599,11 @@ function App() {
             </div>
 
             <div
-              className={`relative mx-auto w-full max-w-[500px] transition-all delay-200 duration-1000 lg:mx-0 lg:translate-x-6 ${
+              className={`relative mx-auto w-full max-w-[500px] transition-all delay-200 duration-1000 lg:-translate-y-10 lg:mx-0 lg:translate-x-6 xl:-translate-y-14 ${
                 heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
             >
-              <div className="pointer-events-none absolute inset-x-[6%] top-[10%] h-[64%] rounded-full bg-[radial-gradient(circle,rgba(72,106,168,0.34),rgba(22,30,46,0.16)_40%,transparent_76%)] blur-3xl" />
+              <div className="pointer-events-none absolute inset-x-[6%] top-[2%] h-[64%] rounded-full bg-[radial-gradient(circle,rgba(72,106,168,0.34),rgba(22,30,46,0.16)_40%,transparent_76%)] blur-3xl" />
               <div className="pointer-events-none absolute inset-x-[24%] bottom-[8%] h-28 bg-[radial-gradient(circle,rgba(255,255,255,0.12),transparent_70%)] blur-2xl" />
               <div className="pointer-events-none absolute -left-8 top-[4%] h-[82%] w-32 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.85)] to-transparent blur-xl" />
               <div className="pointer-events-none absolute -right-8 top-[8%] h-[76%] w-24 bg-gradient-to-l from-[var(--bg-color)] via-[rgba(3,3,3,0.7)] to-transparent blur-lg" />
@@ -614,7 +614,7 @@ function App() {
                 <img
                   src="/manan-portrait.png"
                   alt="Portrait of Manan Shah"
-                  className="relative z-10 h-full min-h-[520px] w-full scale-[1.18] object-cover object-[center_18%] brightness-[1.1] contrast-[1.08] saturate-[0.9] mix-blend-lighten lg:min-h-[660px] lg:scale-[1.24] lg:object-[center_12%]"
+                  className="relative z-10 h-full min-h-[520px] w-full scale-[1.18] object-cover object-[center_10%] brightness-[1.1] contrast-[1.08] saturate-[0.9] mix-blend-lighten lg:min-h-[660px] lg:scale-[1.24] lg:object-[center_4%]"
                   style={{
                     maskImage:
                       'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 34%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.52) 74%, rgba(0,0,0,0) 92%), linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 72%, rgba(0,0,0,0.26) 92%, rgba(0,0,0,0) 100%)',
