@@ -3,6 +3,7 @@ import {
   Mesh,
   OrthographicCamera,
   PlaneGeometry,
+  SRGBColorSpace,
   Scene,
   ShaderMaterial,
   Vector2,
@@ -50,19 +51,19 @@ const fragmentShader = `
   float fbm(vec2 p) {
     float value = 0.0;
     float amplitude = 0.5;
+    mat2 rotation = mat2(1.6, 1.2, -1.2, 1.6);
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
       value += amplitude * noise(p);
-      p *= 2.0;
-      amplitude *= 0.5;
+      p = rotation * p * 1.08;
+      amplitude *= 0.52;
     }
 
     return value;
   }
 
-  float blob(vec2 p, vec2 center, float radius) {
-    float d = length(p - center);
-    return smoothstep(radius, 0.0, d);
+  float ridge(float value) {
+    return 1.0 - abs(value * 2.0 - 1.0);
   }
 
   void main() {
@@ -72,45 +73,51 @@ const fragmentShader = `
     vec2 mouse = uMouse - 0.5;
     mouse.x *= uResolution.x / uResolution.y;
 
-    float time = uTime * 0.12;
+    float time = uTime * 0.075;
 
-    vec2 warp = vec2(
-      fbm(p * 2.1 + vec2(time * 0.8, -time * 0.4)),
-      fbm(p * 2.0 + vec2(-time * 0.55, time * 0.7))
+    vec2 warpA = vec2(
+      fbm(p * 0.95 + vec2(time * 0.18, -time * 0.14)),
+      fbm(p * 1.05 + vec2(-time * 0.16, time * 0.2))
     );
 
-    vec2 q = p + (warp - 0.5) * 0.48 + mouse * 0.08;
+    vec2 warpB = vec2(
+      fbm((p + (warpA - 0.5) * 0.8) * 2.0 + vec2(-time * 0.09, time * 0.07)),
+      fbm((p - (warpA - 0.5) * 0.7) * 1.9 + vec2(time * 0.08, -time * 0.06))
+    );
 
-    float g1 = blob(q, vec2(-0.78 + sin(time * 0.75) * 0.08, -0.14 + cos(time * 0.4) * 0.04), 1.02);
-    float g2 = blob(q, vec2(0.82 + cos(time * 0.62) * 0.06, -0.28 + sin(time * 0.68) * 0.05), 0.92);
-    float g3 = blob(q, vec2(-0.04 + sin(time * 0.45) * 0.07, 0.50 + cos(time * 0.46) * 0.04), 0.98);
-    float g4 = blob(q, vec2(0.36 + cos(time * 0.32) * 0.06, 0.16 + sin(time * 0.36) * 0.04), 0.82);
+    vec2 q = p + (warpA - 0.5) * 0.52 + (warpB - 0.5) * 0.16 + mouse * 0.025;
 
-    float detail = fbm(q * 3.2 + vec2(time * 0.25, -time * 0.32));
-    float sheen = smoothstep(0.52, 0.94, detail);
-    float textureNoise = fbm(q * 6.4 + vec2(1.7, -2.9));
-    float grainField = noise(gl_FragCoord.xy * 0.085 + vec2(9.0, 13.0));
-    float meshMask = clamp(g1 + g2 + g3 + g4, 0.0, 1.0);
+    float massA = smoothstep(1.18, 0.0, length(q - vec2(-0.74 + sin(time * 0.52) * 0.08, -0.22 + cos(time * 0.34) * 0.05)));
+    float massB = smoothstep(1.02, 0.0, length(q - vec2(0.76 + cos(time * 0.48) * 0.06, -0.28 + sin(time * 0.41) * 0.05)));
+    float massC = smoothstep(1.0, 0.0, length(q - vec2(0.04 + sin(time * 0.27) * 0.05, 0.58 + cos(time * 0.29) * 0.04)));
+    float massD = smoothstep(0.86, 0.0, length(q - vec2(0.36 + cos(time * 0.21) * 0.04, 0.12 + sin(time * 0.25) * 0.05)));
+
+    float field = massA * 0.95 + massB * 0.8 + massC * 0.85 + massD * 0.6;
+    float broad = fbm(q * 1.45 + vec2(time * 0.08, -time * 0.06));
+    float detail = fbm(q * 3.2 + vec2(-time * 0.03, time * 0.04));
+    float ridges = ridge(fbm(q * 2.1 + vec2(4.0, -7.0))) * 0.5 + ridge(fbm(q * 4.5 + vec2(-2.0, 3.0))) * 0.25;
+    float textureNoise = fbm(q * 8.0 + vec2(12.4, -8.1));
+    float micro = noise(gl_FragCoord.xy * 0.08 + vec2(17.0, 29.0));
+
+    float silverLift = smoothstep(0.34, 0.9, broad + field * 0.22);
+    float chromeRim = smoothstep(0.52, 0.96, detail * 0.7 + ridges * 0.6 + field * 0.12);
 
     vec3 color = vec3(0.012, 0.012, 0.015);
-    color += vec3(0.56, 0.58, 0.60) * g1 * 0.16;
-    color += vec3(0.93, 0.94, 0.95) * g2 * 0.10;
-    color += vec3(0.38, 0.40, 0.42) * g3 * 0.22;
-    color += vec3(0.76, 0.78, 0.80) * g4 * 0.13;
-    color += vec3(0.24, 0.25, 0.27) * sheen * 0.12 * (g1 + g2 + g3 + g4);
-    color += vec3(textureNoise - 0.5) * 0.065 * (0.35 + meshMask * 0.65);
-    color += vec3(grainField - 0.5) * 0.03;
+    color += vec3(0.18, 0.19, 0.20) * field * 0.24;
+    color += vec3(0.42, 0.43, 0.45) * silverLift * 0.18;
+    color += vec3(0.82, 0.84, 0.87) * chromeRim * (0.08 + 0.08 * massB + 0.05 * massC);
+    color += vec3(textureNoise - 0.5) * 0.045 * (0.35 + field * 0.65);
+    color += vec3(micro - 0.5) * 0.018;
 
     float vignette = smoothstep(1.72, 0.22, length(p));
     color *= vignette;
 
-    float grain = hash(gl_FragCoord.xy + uTime) * 0.02;
-    color += grain * 0.035;
-
     float luma = dot(color, vec3(0.299, 0.587, 0.114));
-    color = mix(vec3(luma), color, 0.32);
+    color = mix(vec3(luma), color, 0.2);
+    color = color / (vec3(1.0) + color);
+    color = pow(color, vec3(0.96));
 
-    gl_FragColor = vec4(color, 0.96);
+    gl_FragColor = vec4(max(color, vec3(0.0)), 0.98);
   }
 `
 
@@ -137,6 +144,7 @@ function MeshGradientBackground({ mousePosition }) {
       powerPreference: 'high-performance',
     })
     renderer.setClearColor(0x000000, 0)
+    renderer.outputColorSpace = SRGBColorSpace
     renderer.domElement.style.width = '100%'
     renderer.domElement.style.height = '100%'
     renderer.domElement.style.display = 'block'
@@ -155,6 +163,7 @@ function MeshGradientBackground({ mousePosition }) {
       fragmentShader,
       depthTest: false,
       depthWrite: false,
+      precision: 'highp',
       transparent: true,
     })
 
@@ -164,7 +173,7 @@ function MeshGradientBackground({ mousePosition }) {
     const setSize = () => {
       const width = window.innerWidth
       const height = window.innerHeight
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5))
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
       renderer.setSize(width, height, false)
       material.uniforms.uResolution.value.set(width, height)
     }
