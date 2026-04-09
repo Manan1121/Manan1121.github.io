@@ -521,78 +521,109 @@ function App() {
           ref={heroRef}
           className="flex min-h-[85vh] flex-col justify-center px-6 lg:px-12"
         >
-          <div className="max-w-5xl">
-            <p
-              className={`mb-8 text-xs font-mono-code uppercase tracking-[0.2em] text-white/50 transition-all duration-1000 ${
-                heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-              }`}
-            >
-              Portfolio // Rutgers University &apos;25
-            </p>
+          <div className="grid items-end gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:gap-8 xl:gap-14">
+            <div className="max-w-5xl">
+              <p
+                className={`mb-8 text-xs font-mono-code uppercase tracking-[0.2em] text-white/50 transition-all duration-1000 ${
+                  heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                }`}
+              >
+                Portfolio // Rutgers University &apos;25
+              </p>
 
-            <h1
-              className={`font-serif-display text-6xl leading-[0.9] tracking-tight transition-all delay-100 duration-1000 md:text-8xl lg:text-9xl ${
-                heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`}
-            >
-              Manan Shah.
-              <br />
-              <span className="text-5xl italic text-white/40 md:text-7xl lg:text-8xl">
-                IT / Software Engineer.
-              </span>
-            </h1>
+              <h1
+                className={`font-serif-display text-6xl leading-[0.9] tracking-tight transition-all delay-100 duration-1000 md:text-8xl lg:text-[8rem] xl:text-9xl ${
+                  heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                }`}
+              >
+                Manan Shah.
+                <br />
+                <span className="text-5xl italic text-white/40 md:text-7xl lg:text-[6.2rem] xl:text-8xl">
+                  IT / Software Engineer.
+                </span>
+              </h1>
 
-            <div
-              className={`mt-16 flex flex-col gap-12 border-t border-white/10 pt-8 transition-all delay-300 duration-1000 md:flex-row ${
-                heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`}
-            >
-              <div className="md:w-1/2">
-                <p className="mb-3 text-xs font-mono-code uppercase tracking-widest text-white/40">
-                  Identity
-                </p>
-                <p className="text-lg leading-relaxed font-light text-white/80">
-                  Software developer and data scientist building backend systems, full-stack
-                  applications, and automated data pipelines with a product mindset.
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <a
-                    href="#projects"
-                    onMouseEnter={handleHover}
-                    onMouseLeave={handleLeave}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-xs font-mono-code uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-black"
-                  >
-                    View Work
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </a>
-                  <a
-                    href="mailto:mananhshah04@gmail.com"
-                    onMouseEnter={handleHover}
-                    onMouseLeave={handleLeave}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-xs font-mono-code uppercase tracking-[0.2em] text-white/70 transition-colors hover:border-white/30 hover:text-white"
-                  >
-                    Email Me
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex gap-12 md:w-1/2">
-                <div>
+              <div
+                className={`mt-16 flex flex-col gap-12 border-t border-white/10 pt-8 transition-all delay-300 duration-1000 md:flex-row ${
+                  heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                }`}
+              >
+                <div className="md:w-1/2">
                   <p className="mb-3 text-xs font-mono-code uppercase tracking-widest text-white/40">
-                    Location
+                    Identity
                   </p>
-                  <p className="text-lg font-light">New Brunswick, NJ</p>
-                </div>
-                <div>
-                  <p className="mb-3 text-xs font-mono-code uppercase tracking-widest text-white/40">
-                    Status
+                  <p className="text-lg leading-relaxed font-light text-white/80">
+                    Software developer and data scientist building backend systems, full-stack
+                    applications, and automated data pipelines with a product mindset.
                   </p>
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-                    <p className="text-lg font-light">Available 2026</p>
+
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    <a
+                      href="#projects"
+                      onMouseEnter={handleHover}
+                      onMouseLeave={handleLeave}
+                      className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-xs font-mono-code uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-black"
+                    >
+                      View Work
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                    <a
+                      href="mailto:mananhshah04@gmail.com"
+                      onMouseEnter={handleHover}
+                      onMouseLeave={handleLeave}
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-xs font-mono-code uppercase tracking-[0.2em] text-white/70 transition-colors hover:border-white/30 hover:text-white"
+                    >
+                      Email Me
+                    </a>
                   </div>
                 </div>
+
+                <div className="flex gap-12 md:w-1/2">
+                  <div>
+                    <p className="mb-3 text-xs font-mono-code uppercase tracking-widest text-white/40">
+                      Location
+                    </p>
+                    <p className="text-lg font-light">New Brunswick, NJ</p>
+                  </div>
+                  <div>
+                    <p className="mb-3 text-xs font-mono-code uppercase tracking-widest text-white/40">
+                      Status
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+                      <p className="text-lg font-light">Available 2026</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`relative mx-auto w-full max-w-[560px] transition-all delay-200 duration-1000 lg:mx-0 ${
+                heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
+              <div className="pointer-events-none absolute inset-x-[10%] top-[8%] h-[68%] rounded-full bg-[radial-gradient(circle,rgba(67,96,151,0.22),rgba(18,23,38,0.08)_40%,transparent_72%)] blur-3xl" />
+              <div className="pointer-events-none absolute inset-x-[18%] bottom-[10%] h-28 bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_70%)] blur-2xl" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.7)] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[var(--bg-color)] to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.82)] to-transparent" />
+
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))] shadow-[0_40px_120px_rgba(0,0,0,0.45)]">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.08),transparent_32%)]" />
+                <img
+                  src="/manan-portrait.png"
+                  alt="Portrait of Manan Shah"
+                  className="relative z-10 h-full min-h-[420px] w-full object-cover object-center saturate-[0.9]"
+                  style={{
+                    maskImage:
+                      'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.92) 14%, rgba(0,0,0,1) 42%, rgba(0,0,0,0.96) 76%, rgba(0,0,0,0) 100%)',
+                    WebkitMaskImage:
+                      'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.92) 14%, rgba(0,0,0,1) 42%, rgba(0,0,0,0.96) 76%, rgba(0,0,0,0) 100%)',
+                  }}
+                />
+                <div className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(90deg,rgba(3,3,3,0.85)_0%,rgba(3,3,3,0.08)_24%,rgba(3,3,3,0)_60%,rgba(3,3,3,0.2)_100%)]" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-44 bg-[linear-gradient(180deg,transparent,rgba(3,3,3,0.2)_35%,rgba(3,3,3,0.92)_100%)]" />
               </div>
             </div>
           </div>
