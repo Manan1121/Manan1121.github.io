@@ -211,15 +211,15 @@ const HeroWireframeSphere = ({ mousePosition }) => {
       rotationX += 0.0015 + mouseNormY * 0.008
       rotationY += 0.002 + mouseNormX * 0.008
 
-      const radius = Math.min(width, height) * 0.34
+      const radius = Math.min(width, height) * 0.43
       const centerX = width * 0.5
       const centerY = height * 0.5
 
       ctx.save()
       ctx.translate(centerX, centerY)
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)'
-      ctx.lineWidth = 1
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)'
+      ctx.lineWidth = 1.15
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.72)'
 
       const numLats = 16
       const numLons = 32
@@ -274,7 +274,7 @@ const HeroWireframeSphere = ({ mousePosition }) => {
           else ctx.lineTo(px, py)
 
           if (i % 2 === 0 && j % 2 === 0) {
-            ctx.fillRect(px - 1, py - 1, 2, 2)
+            ctx.fillRect(px - 1.4, py - 1.4, 2.8, 2.8)
           }
         }
         ctx.stroke()
@@ -292,7 +292,7 @@ const HeroWireframeSphere = ({ mousePosition }) => {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="pointer-events-none absolute inset-[-30%] z-0 hidden h-[160%] w-[160%] lg:block" />
+  return <canvas ref={canvasRef} className="pointer-events-none absolute inset-[-42%] z-0 hidden h-[184%] w-[184%] lg:block" />
 }
 
 const CustomCursor = ({ mousePosition, isHovering }) => {
