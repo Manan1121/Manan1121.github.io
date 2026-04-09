@@ -453,12 +453,11 @@ function App() {
                   className="absolute inset-y-0 right-[-2%] z-10 h-full w-full object-contain object-[center_top] brightness-[1.03] contrast-[1.14] saturate-[0.9] drop-shadow-[0_24px_70px_rgba(0,0,0,0.42)] lg:right-[-4%] lg:scale-[1.02]"
                   style={{
                     maskImage:
-                      'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.18) 10%, rgba(0,0,0,0.96) 24%, rgba(0,0,0,1) 82%, rgba(0,0,0,0.85) 94%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,1) 22%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.18) 97%, transparent 100%)',
+                      'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.84) 94%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,1) 22%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.18) 97%, transparent 100%)',
                     WebkitMaskImage:
-                      'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.18) 10%, rgba(0,0,0,0.96) 24%, rgba(0,0,0,1) 82%, rgba(0,0,0,0.85) 94%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,1) 22%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.18) 97%, transparent 100%)',
+                      'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.84) 94%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,1) 22%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.18) 97%, transparent 100%)',
                   }}
                 />
-                <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-20 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.36)] to-transparent lg:w-28" />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-20 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.18)] to-transparent lg:h-28" />
               </div>
             </div>
