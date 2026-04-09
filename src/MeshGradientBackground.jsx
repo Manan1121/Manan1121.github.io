@@ -79,33 +79,35 @@ const fragmentShader = `
       fbm(p * 2.0 + vec2(-time * 0.55, time * 0.7))
     );
 
-    vec2 q = p + (warp - 0.5) * 0.48 + mouse * 0.08;
+    vec2 q = p + (warp - 0.5) * 0.62 + mouse * 0.1;
 
-    float g1 = blob(q, vec2(-0.78 + sin(time * 0.75) * 0.08, -0.14 + cos(time * 0.4) * 0.04), 1.02);
-    float g2 = blob(q, vec2(0.82 + cos(time * 0.62) * 0.06, -0.28 + sin(time * 0.68) * 0.05), 0.92);
-    float g3 = blob(q, vec2(-0.04 + sin(time * 0.45) * 0.07, 0.50 + cos(time * 0.46) * 0.04), 0.98);
-    float g4 = blob(q, vec2(0.36 + cos(time * 0.32) * 0.06, 0.16 + sin(time * 0.36) * 0.04), 0.82);
+    float g1 = blob(q, vec2(-0.82 + sin(time * 0.75) * 0.08, -0.18 + cos(time * 0.4) * 0.04), 1.08);
+    float g2 = blob(q, vec2(0.86 + cos(time * 0.62) * 0.06, -0.26 + sin(time * 0.68) * 0.05), 0.98);
+    float g3 = blob(q, vec2(-0.06 + sin(time * 0.45) * 0.07, 0.54 + cos(time * 0.46) * 0.04), 1.04);
+    float g4 = blob(q, vec2(0.34 + cos(time * 0.32) * 0.06, 0.18 + sin(time * 0.36) * 0.04), 0.9);
 
     float detail = fbm(q * 3.2 + vec2(time * 0.25, -time * 0.32));
-    float sheen = smoothstep(0.52, 0.94, detail);
+    float sheen = smoothstep(0.46, 0.92, detail);
+    float ribbon = smoothstep(0.18, 0.82, fbm(q * 1.8 + vec2(time * 0.18, time * 0.11)));
 
-    vec3 color = vec3(0.012, 0.012, 0.015);
-    color += vec3(0.56, 0.58, 0.60) * g1 * 0.16;
-    color += vec3(0.93, 0.94, 0.95) * g2 * 0.10;
-    color += vec3(0.38, 0.40, 0.42) * g3 * 0.22;
-    color += vec3(0.76, 0.78, 0.80) * g4 * 0.13;
-    color += vec3(0.24, 0.25, 0.27) * sheen * 0.12 * (g1 + g2 + g3 + g4);
+    vec3 color = vec3(0.03, 0.03, 0.035);
+    color += vec3(0.82, 0.84, 0.86) * g1 * 0.22;
+    color += vec3(1.0, 1.0, 1.0) * g2 * 0.14;
+    color += vec3(0.52, 0.54, 0.57) * g3 * 0.28;
+    color += vec3(0.88, 0.89, 0.91) * g4 * 0.18;
+    color += vec3(0.34, 0.35, 0.38) * sheen * 0.2 * (g1 + g2 + g3 + g4);
+    color += vec3(0.24, 0.25, 0.28) * ribbon * 0.22;
 
-    float vignette = smoothstep(1.72, 0.22, length(p));
+    float vignette = smoothstep(1.9, 0.12, length(p));
     color *= vignette;
 
     float grain = hash(gl_FragCoord.xy + uTime) * 0.02;
-    color += grain * 0.035;
+    color += grain * 0.028;
 
     float luma = dot(color, vec3(0.299, 0.587, 0.114));
-    color = mix(vec3(luma), color, 0.32);
+    color = mix(vec3(luma), color, 0.42);
 
-    gl_FragColor = vec4(color, 0.96);
+    gl_FragColor = vec4(color, 1.0);
   }
 `
 
@@ -196,7 +198,7 @@ function MeshGradientBackground({ mousePosition }) {
     }
   }, [])
 
-  return <div ref={containerRef} className="pointer-events-none fixed inset-0 z-0 opacity-95" />
+  return <div ref={containerRef} className="pointer-events-none fixed inset-0 z-0 opacity-100" />
 }
 
 export default MeshGradientBackground

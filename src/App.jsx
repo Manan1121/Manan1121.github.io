@@ -449,22 +449,24 @@ function App() {
               <div className="pointer-events-none absolute inset-y-[6%] left-[8%] right-[6%] rounded-full bg-[radial-gradient(circle,rgba(66,93,143,0.22),rgba(20,28,42,0.1)_42%,transparent_72%)] blur-3xl" />
               <div className="pointer-events-none absolute inset-x-[26%] bottom-[10%] h-28 bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_72%)] blur-2xl" />
 
-              <div className="relative h-[460px] overflow-hidden sm:h-[560px] lg:h-[720px] xl:h-[760px]">
+              <div className="relative isolate h-[460px] overflow-hidden sm:h-[560px] lg:h-[720px] xl:h-[760px]">
+                <div className="pointer-events-none absolute inset-y-[8%] left-[12%] right-[8%] z-0 rounded-[46%] bg-[radial-gradient(circle_at_52%_38%,rgba(8,8,10,0.98)_0%,rgba(6,6,8,0.96)_34%,rgba(5,5,7,0.9)_56%,rgba(4,4,6,0.52)_76%,transparent_100%)] blur-xl" />
+                <div className="pointer-events-none absolute inset-y-[14%] left-[20%] right-[18%] z-0 rounded-[48%] bg-[radial-gradient(circle_at_50%_36%,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.78)_42%,rgba(0,0,0,0.18)_78%,transparent_100%)]" />
                 <img
                   src="/manan-portrait.png"
                   alt="Portrait of Manan Shah"
-                  className="absolute inset-y-[-8%] right-[-2%] h-[118%] w-[108%] object-cover object-[center_22%] brightness-[1.1] contrast-[1.1] saturate-[0.9] mix-blend-screen lg:inset-y-[-10%] lg:right-[-4%] lg:h-[122%] lg:w-[112%] lg:object-[center_18%]"
+                  className="absolute inset-y-[-8%] right-[-2%] z-10 h-[118%] w-[108%] object-cover object-[center_22%] brightness-[1.08] contrast-[1.18] saturate-[0.88] mix-blend-lighten lg:inset-y-[-10%] lg:right-[-4%] lg:h-[122%] lg:w-[112%] lg:object-[center_18%]"
                   style={{
                     maskImage:
-                      'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.14) 10%, rgba(0,0,0,0.82) 28%, rgba(0,0,0,1) 42%, rgba(0,0,0,1) 79%, rgba(0,0,0,0.68) 92%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.72) 12%, rgba(0,0,0,1) 28%, rgba(0,0,0,1) 76%, rgba(0,0,0,0.58) 92%, transparent 100%)',
+                      'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.08) 12%, rgba(0,0,0,0.88) 30%, rgba(0,0,0,1) 44%, rgba(0,0,0,1) 78%, rgba(0,0,0,0.74) 92%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.62) 12%, rgba(0,0,0,1) 28%, rgba(0,0,0,1) 76%, rgba(0,0,0,0.66) 92%, transparent 100%)',
                     WebkitMaskImage:
-                      'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.14) 10%, rgba(0,0,0,0.82) 28%, rgba(0,0,0,1) 42%, rgba(0,0,0,1) 79%, rgba(0,0,0,0.68) 92%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.72) 12%, rgba(0,0,0,1) 28%, rgba(0,0,0,1) 76%, rgba(0,0,0,0.58) 92%, transparent 100%)',
+                      'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.08) 12%, rgba(0,0,0,0.88) 30%, rgba(0,0,0,1) 44%, rgba(0,0,0,1) 78%, rgba(0,0,0,0.74) 92%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.62) 12%, rgba(0,0,0,1) 28%, rgba(0,0,0,1) 76%, rgba(0,0,0,0.66) 92%, transparent 100%)',
                   }}
                 />
-                <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.92)] to-transparent lg:w-40" />
-                <div className="pointer-events-none absolute inset-y-0 right-0 w-18 bg-gradient-to-l from-[var(--bg-color)] via-[rgba(3,3,3,0.54)] to-transparent lg:w-24" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.86)] to-transparent lg:h-44" />
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[var(--bg-color)] via-[rgba(3,3,3,0.36)] to-transparent lg:h-28" />
+                <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-28 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.96)] to-transparent lg:w-40" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-18 bg-gradient-to-l from-[var(--bg-color)] via-[rgba(3,3,3,0.62)] to-transparent lg:w-24" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.9)] to-transparent lg:h-44" />
+                <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-20 bg-gradient-to-b from-[var(--bg-color)] via-[rgba(3,3,3,0.44)] to-transparent lg:h-28" />
               </div>
             </div>
           </div>
