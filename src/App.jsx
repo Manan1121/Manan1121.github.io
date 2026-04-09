@@ -445,17 +445,10 @@ function App() {
               }`}
             >
               <div className="relative isolate h-[460px] overflow-hidden sm:h-[560px] lg:h-[720px] xl:h-[760px]">
-                <div className="pointer-events-none absolute inset-x-[8%] bottom-0 z-0 h-[78%] bg-black blur-3xl" />
                 <img
                   src="/manan-portrait-rembg-cropped.png"
                   alt="Portrait of Manan Shah"
                   className="absolute inset-0 right-[-2%] bottom-[-1px] z-10 h-full w-full object-contain object-[center_bottom] brightness-[1.03] contrast-[1.14] saturate-[0.9] drop-shadow-[0_28px_80px_rgba(0,0,0,0.55)] lg:right-[-4%] lg:scale-[1.02]"
-                  style={{
-                    maskImage:
-                      'linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 88%, rgba(0,0,0,0.8) 95%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.42) 10%, rgba(0,0,0,1) 24%, rgba(0,0,0,1) 92%, rgba(0,0,0,0.35) 98%, transparent 100%)',
-                    WebkitMaskImage:
-                      'linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 88%, rgba(0,0,0,0.8) 95%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.42) 10%, rgba(0,0,0,1) 24%, rgba(0,0,0,1) 92%, rgba(0,0,0,0.35) 98%, transparent 100%)',
-                  }}
                 />
               </div>
             </div>
