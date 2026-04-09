@@ -88,6 +88,9 @@ const fragmentShader = `
 
     float detail = fbm(q * 3.2 + vec2(time * 0.25, -time * 0.32));
     float sheen = smoothstep(0.52, 0.94, detail);
+    float textureNoise = fbm(q * 6.4 + vec2(1.7, -2.9));
+    float grainField = noise(gl_FragCoord.xy * 0.085 + vec2(9.0, 13.0));
+    float meshMask = clamp(g1 + g2 + g3 + g4, 0.0, 1.0);
 
     vec3 color = vec3(0.012, 0.012, 0.015);
     color += vec3(0.56, 0.58, 0.60) * g1 * 0.16;
@@ -95,6 +98,8 @@ const fragmentShader = `
     color += vec3(0.38, 0.40, 0.42) * g3 * 0.22;
     color += vec3(0.76, 0.78, 0.80) * g4 * 0.13;
     color += vec3(0.24, 0.25, 0.27) * sheen * 0.12 * (g1 + g2 + g3 + g4);
+    color += vec3(textureNoise - 0.5) * 0.065 * (0.35 + meshMask * 0.65);
+    color += vec3(grainField - 0.5) * 0.03;
 
     float vignette = smoothstep(1.72, 0.22, length(p));
     color *= vignette;

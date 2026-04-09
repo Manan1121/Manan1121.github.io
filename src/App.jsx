@@ -442,7 +442,7 @@ function App() {
             </div>
 
             <div
-              className={`relative mx-auto w-full max-w-[560px] transition-all delay-200 duration-1000 lg:-translate-y-8 lg:mx-0 lg:max-w-none xl:-translate-y-10 ${
+              className={`relative mx-auto w-full max-w-[560px] transition-all delay-200 duration-1000 lg:mx-0 lg:max-w-none lg:self-end ${
                 heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
             >
@@ -450,7 +450,7 @@ function App() {
                 <img
                   src="/manan-portrait-rembg-cropped.png"
                   alt="Portrait of Manan Shah"
-                  className="absolute inset-y-0 right-[-2%] z-10 h-full w-full object-contain object-[center_top] brightness-[1.03] contrast-[1.14] saturate-[0.9] drop-shadow-[0_24px_70px_rgba(0,0,0,0.42)] lg:right-[-4%] lg:scale-[1.02]"
+                  className="absolute inset-0 right-[-2%] bottom-[-1px] z-10 h-full w-full object-contain object-[center_bottom] brightness-[1.03] contrast-[1.14] saturate-[0.9] drop-shadow-[0_24px_70px_rgba(0,0,0,0.42)] lg:right-[-4%] lg:scale-[1.02]"
                   style={{
                     maskImage:
                       'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.84) 94%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,1) 22%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.18) 97%, transparent 100%)',
@@ -458,7 +458,6 @@ function App() {
                       'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.84) 94%, transparent 100%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 8%, rgba(0,0,0,1) 22%, rgba(0,0,0,1) 86%, rgba(0,0,0,0.18) 97%, transparent 100%)',
                   }}
                 />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-20 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.18)] to-transparent lg:h-28" />
               </div>
             </div>
           </div>
