@@ -164,102 +164,135 @@ const BackgroundGrid = () => (
   />
 )
 
-const HeroOrbitFrame = ({ mousePosition }) => {
-  const offsetX = mousePosition.x === 0 ? 0 : (mousePosition.x / window.innerWidth - 0.5) * 18
-  const offsetY = mousePosition.y === 0 ? 0 : (mousePosition.y / window.innerHeight - 0.5) * 18
+const HeroWireframeSphere = ({ mousePosition }) => {
+  const canvasRef = useRef(null)
+  const mouseRef = useRef(mousePosition)
 
-  return (
-    <div
-      className="pointer-events-none absolute inset-[-24%] z-0 hidden lg:block"
-      style={{ transform: `translate3d(${offsetX}px, ${offsetY}px, 0)` }}
-    >
-      <div className="absolute inset-[10%] rounded-full border border-white/[0.06]" />
-      <div className="absolute inset-[3%] rounded-full border border-white/[0.04]" />
-      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
-        <g className="hero-orbit-spin origin-center">
-          <ellipse
-            cx="50"
-            cy="50"
-            rx="39"
-            ry="47"
-            fill="none"
-            stroke="rgba(255,255,255,0.18)"
-            strokeWidth="0.35"
-          />
-          <ellipse
-            cx="50"
-            cy="50"
-            rx="31"
-            ry="47"
-            fill="none"
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="0.28"
-          />
-        </g>
-        <g className="hero-orbit-reverse origin-center">
-          <ellipse
-            cx="50"
-            cy="50"
-            rx="47"
-            ry="30"
-            fill="none"
-            stroke="rgba(255,255,255,0.16)"
-            strokeWidth="0.35"
-          />
-          <ellipse
-            cx="50"
-            cy="50"
-            rx="47"
-            ry="18"
-            fill="none"
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="0.28"
-          />
-        </g>
-        <g className="hero-orbit-spin-slow origin-center">
-          <ellipse
-            cx="50"
-            cy="50"
-            rx="34"
-            ry="44"
-            transform="rotate(38 50 50)"
-            fill="none"
-            stroke="rgba(255,255,255,0.13)"
-            strokeWidth="0.28"
-          />
-          <ellipse
-            cx="50"
-            cy="50"
-            rx="45"
-            ry="25"
-            transform="rotate(-26 50 50)"
-            fill="none"
-            stroke="rgba(255,255,255,0.1)"
-            strokeWidth="0.24"
-          />
-        </g>
-        <ellipse
-          cx="50"
-          cy="50"
-          rx="27"
-          ry="27"
-          fill="none"
-          stroke="rgba(255,255,255,0.06)"
-          strokeWidth="0.2"
-        />
-        <circle cx="11" cy="50" r="0.9" fill="rgba(255,255,255,0.58)" className="hero-node-float" />
-        <circle cx="89" cy="50" r="0.9" fill="rgba(255,255,255,0.58)" className="hero-node-float-delayed" />
-        <circle cx="50" cy="7" r="0.85" fill="rgba(255,255,255,0.54)" className="hero-node-float" />
-        <circle cx="50" cy="93" r="0.85" fill="rgba(255,255,255,0.54)" className="hero-node-float-delayed" />
-        <circle cx="24" cy="21" r="0.72" fill="rgba(255,255,255,0.46)" className="hero-node-float" />
-        <circle cx="76" cy="21" r="0.72" fill="rgba(255,255,255,0.46)" className="hero-node-float-delayed" />
-        <circle cx="24" cy="79" r="0.72" fill="rgba(255,255,255,0.46)" className="hero-node-float-delayed" />
-        <circle cx="76" cy="79" r="0.72" fill="rgba(255,255,255,0.46)" className="hero-node-float" />
-      </svg>
-      <div className="absolute inset-[12%] rounded-full bg-[radial-gradient(circle,transparent_52%,rgba(255,255,255,0.05)_68%,transparent_77%)]" />
-      <div className="absolute inset-[0%] rounded-full bg-[radial-gradient(circle,rgba(65,95,145,0.14)_0%,transparent_67%)] blur-2xl" />
-    </div>
-  )
+  useEffect(() => {
+    mouseRef.current = mousePosition
+  }, [mousePosition])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const ctx = canvas?.getContext('2d')
+
+    if (!canvas || !ctx) {
+      return undefined
+    }
+
+    let animationFrameId
+    let width = 0
+    let height = 0
+
+    const setSize = () => {
+      const rect = canvas.getBoundingClientRect()
+      width = rect.width
+      height = rect.height
+      const dpr = window.devicePixelRatio || 1
+
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
+    setSize()
+    window.addEventListener('resize', setSize)
+
+    let rotationX = 0
+    let rotationY = 0
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height)
+
+      const currentMouse = mouseRef.current
+      const mouseNormX = currentMouse.x === 0 ? 0 : (currentMouse.x / window.innerWidth) * 2 - 1
+      const mouseNormY = currentMouse.y === 0 ? 0 : (currentMouse.y / window.innerHeight) * 2 - 1
+
+      rotationX += 0.0015 + mouseNormY * 0.008
+      rotationY += 0.002 + mouseNormX * 0.008
+
+      const radius = Math.min(width, height) * 0.34
+      const centerX = width * 0.5
+      const centerY = height * 0.5
+
+      ctx.save()
+      ctx.translate(centerX, centerY)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)'
+      ctx.lineWidth = 1
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
+
+      const numLats = 16
+      const numLons = 32
+
+      const rotatePoint = (x, y, z) => {
+        let y1 = y * Math.cos(rotationX) - z * Math.sin(rotationX)
+        let z1 = y * Math.sin(rotationX) + z * Math.cos(rotationX)
+        let x2 = x * Math.cos(rotationY) + z1 * Math.sin(rotationY)
+        let z2 = -x * Math.sin(rotationY) + z1 * Math.cos(rotationY)
+        return { x: x2, y: y1, z: z2 }
+      }
+
+      const points = []
+      for (let i = 0; i <= numLats; i += 1) {
+        const latAngle = Math.PI * (i / numLats) - Math.PI / 2
+        const y = Math.sin(latAngle) * radius
+        const r = Math.cos(latAngle) * radius
+
+        const ring = []
+        for (let j = 0; j <= numLons; j += 1) {
+          const lonAngle = 2 * Math.PI * (j / numLons)
+          const x = Math.cos(lonAngle) * r
+          const z = Math.sin(lonAngle) * r
+          ring.push(rotatePoint(x, y, z))
+        }
+        points.push(ring)
+      }
+
+      for (let i = 0; i <= numLats; i += 1) {
+        ctx.beginPath()
+        for (let j = 0; j <= numLons; j += 1) {
+          const p = points[i][j]
+          const scale = 1000 / (1000 - p.z)
+          const px = p.x * scale
+          const py = p.y * scale
+
+          if (j === 0) ctx.moveTo(px, py)
+          else ctx.lineTo(px, py)
+        }
+        ctx.stroke()
+      }
+
+      for (let j = 0; j <= numLons; j += 1) {
+        ctx.beginPath()
+        for (let i = 0; i <= numLats; i += 1) {
+          const p = points[i][j]
+          const scale = 1000 / (1000 - p.z)
+          const px = p.x * scale
+          const py = p.y * scale
+
+          if (i === 0) ctx.moveTo(px, py)
+          else ctx.lineTo(px, py)
+
+          if (i % 2 === 0 && j % 2 === 0) {
+            ctx.fillRect(px - 1, py - 1, 2, 2)
+          }
+        }
+        ctx.stroke()
+      }
+
+      ctx.restore()
+      animationFrameId = requestAnimationFrame(draw)
+    }
+
+    draw()
+
+    return () => {
+      window.removeEventListener('resize', setSize)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
+
+  return <canvas ref={canvasRef} className="pointer-events-none absolute inset-[-30%] z-0 hidden h-[160%] w-[160%] lg:block" />
 }
 
 const CustomCursor = ({ mousePosition, isHovering }) => {
@@ -547,7 +580,7 @@ function App() {
               <div className="pointer-events-none absolute -left-6 top-[10%] h-[58%] w-20 bg-gradient-to-r from-[var(--bg-color)] via-[rgba(3,3,3,0.86)] to-transparent blur-lg" />
               <div className="pointer-events-none absolute -right-6 top-[12%] h-[54%] w-14 bg-gradient-to-l from-[var(--bg-color)] via-[rgba(3,3,3,0.42)] to-transparent blur-md" />
               <div className="pointer-events-none absolute inset-x-[14%] bottom-[6%] h-20 bg-gradient-to-t from-[var(--bg-color)] via-[rgba(3,3,3,0.66)] to-transparent blur-lg" />
-              <HeroOrbitFrame mousePosition={mousePosition} />
+              <HeroWireframeSphere mousePosition={mousePosition} />
 
               <div className="relative z-10 mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-full lg:max-w-[390px]">
                 <img

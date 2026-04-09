@@ -98,64 +98,6 @@ img {
   animation: marquee-right 30s linear infinite;
 }
 
-@keyframes hero-orbit-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes hero-orbit-reverse {
-  from {
-    transform: rotate(360deg);
-  }
-
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes hero-node-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0.45;
-  }
-
-  50% {
-    transform: translate3d(0, -4px, 0);
-    opacity: 0.9;
-  }
-}
-
-.hero-orbit-spin {
-  animation: hero-orbit-spin 18s linear infinite;
-  transform-origin: center;
-}
-
-.hero-orbit-reverse {
-  animation: hero-orbit-reverse 22s linear infinite;
-  transform-origin: center;
-}
-
-.hero-orbit-spin-slow {
-  animation: hero-orbit-spin 26s linear infinite;
-  transform-origin: center;
-}
-
-.hero-node-float {
-  animation: hero-node-float 3.4s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.hero-node-float-delayed {
-  animation: hero-node-float 4.2s ease-in-out infinite 0.8s;
-  transform-origin: center;
-}
-
 .nav-link {
   position: relative;
   font-family: 'JetBrains Mono', monospace;
